@@ -6,7 +6,7 @@
 
 <%@page import="java.util.List"%>
 <%@page import="model.MenuItems"%>
-<%@page import="model.FakeDatabase"%>"
+<%@page import="model.FakeDatabase"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="java.awt.MenuItem"%>
 

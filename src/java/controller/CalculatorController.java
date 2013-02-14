@@ -60,7 +60,8 @@ public class CalculatorController extends HttpServlet {
         double resultTax = r.getTax();
         double resultTip = r.getTip();
         double resultTotal = r.getTotal();
-
+        
+        request.setAttribute("menuItems", aItemName);
         request.setAttribute("answer_Tax", resultTax);
         request.setAttribute("answer_Tip", resultTip);
         request.setAttribute("answer_Total", resultTotal);
