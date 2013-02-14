@@ -4,6 +4,12 @@
     Author     : scottodya
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="model.MenuItems"%>
+<%@page import="model.FakeDatabase"%>"
+<%@page import="java.text.NumberFormat"%>
+<%@page import="java.awt.MenuItem"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,23 +19,31 @@
     </head>
     <body>
         <h2>Restaurant Calculator</h2>
-        
+
         <form id="form1" name="form1" method="POST" action="CalculatorController">
-            
-            <p>Select food
-                <!-- the name attribute is set to 'color' which is the
-                     parameter to be retrieved by the servlet -->
-                <select id="food" name="food" size ="1">
-                    <option value="lobster">lobster</option>
-                    <option value="steak">steak</option>
-                    <option value="salad">salad</option>
-                    <option value="beer">beer</option>
-                    <option value="soda">soda</option>
-                </select>
-            </p>
-            <p><input id="addItem" name="addItem" type="submit" value="Add Item"></p>
-            <p><input id="orderSubmit" name="orderSubmit" type="submit" value="Calculate">
-            </p>
-        </form>
-    </body>
+
+                <%
+                    NumberFormat nf = NumberFormat.getCurrencyInstance();
+                    FakeDatabase fdb = new FakeDatabase();
+                    for (MenuItems menuItems : fdb.getMenuItems()) {
+                        String itemName = menuItems.getItemName();
+                        double itemPrice = menuItems.getItemPrice();
+                %>
+
+                <!-- Remember, using the %= notation below is a shortcut for out.print -->
+                <input type="checkbox" name="menuItems" value="<%= itemName%>" /> <%= (itemName + ", " + nf.format(itemPrice))%><br/>
+
+                <%
+                    }
+                %>
+
+            </select>
+        </p>
+        <!--
+        <p><input id="addItem" name="addItem" type="submit" value="Add Item"></p>
+        -->
+        <p><input id="order" name="order" type="submit" value="Submit">
+        </p>
+    </form>
+</body>
 </html>

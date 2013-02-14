@@ -9,5 +9,6 @@ package model;
  * @author scottodya
  */
 public interface ITotalCalculatorService {
-    public abstract double calculateTotal(double retailPrice);
+    public abstract void setCalculatedTotal(double retailPrice);
+    public abstract double getCalculatedTotal();
 }

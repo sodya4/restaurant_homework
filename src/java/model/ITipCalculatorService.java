@@ -9,5 +9,6 @@ package model;
  * @author scottodya
  */
 public interface ITipCalculatorService {
-    public abstract double calculateTip(double retailPrice);
+    public abstract void setCalculatedTip(double retailPrice);
+    public abstract double getCalculatedTip();
 }

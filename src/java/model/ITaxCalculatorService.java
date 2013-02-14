@@ -9,5 +9,6 @@ package model;
  * @author scottodya
  */
 public interface ITaxCalculatorService {
-    public abstract double calculateTax(double retailPrice);
+    public abstract void setCalculatedTax(double retailPrice);
+    public abstract double getCalculatedTax();
 }

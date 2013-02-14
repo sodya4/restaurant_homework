@@ -15,6 +15,8 @@ import model.CalculatorService;
 import model.ITaxCalculatorService;
 import model.ITipCalculatorService;
 import model.ITotalCalculatorService;
+import model.MenuItems;
+import model.Receipt;
 
 /**
  *
@@ -38,17 +40,26 @@ public class CalculatorController extends HttpServlet {
         
         // parameters are name attributes in view pages
         // Here we're retrieving form content from form.html
+        String[] aItemName = request.getParameterValues("menuItems");
         
-        String sRetailPrice = request.getParameter("food");
-        double retailPrice = Double.parseDouble(sRetailPrice.trim());
+        Receipt r = new Receipt();
         
-        ITaxCalculatorService iTax = new CalculatorService();
-        ITipCalculatorService iTip = new CalculatorService();
-        ITotalCalculatorService iTotal = new CalculatorService();
+//        double preTotal = 0;
+//        for (String item : aItemName) {
+//            MenuItems menuItem = null;
+//            if (menuItem.getItemName().equals(item)){
+//                preTotal =+ menuItem.getItemPrice();
+//            }
+//        }
+//        
+//        ITaxCalculatorService iTax = new CalculatorService();
+//        ITipCalculatorService iTip = new CalculatorService();
+//        ITotalCalculatorService iTotal = new CalculatorService();
         
-        double resultTax = iTax.calculateTax(retailPrice);
-        double resultTip = iTip.calculateTip(retailPrice);
-        double resultTotal = iTotal.calculateTotal(retailPrice);
+        r.setOrderItemPrices(aItemName);
+        double resultTax = r.getTax();
+        double resultTip = r.getTip();
+        double resultTotal = r.getTotal();
 
         request.setAttribute("answer_Tax", resultTax);
         request.setAttribute("answer_Tip", resultTip);
