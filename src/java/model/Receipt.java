@@ -39,12 +39,17 @@ public class Receipt {
         ITotalCalculatorService iTotal = new CalculatorService();
 
         iTax.setCalculatedTax(preTotal);
-        iTip.setCalculatedTip(preTotal);
-        iTotal.setCalculatedTotal(preTotal);
-        
         this.tax = iTax.getCalculatedTax();
+        
+        iTip.setCalculatedTip(preTotal, tax);
         this.tip = iTip.getCalculatedTip();
+        
+        iTotal.setCalculatedTotal(preTotal, tax, tip);
         this.total = iTotal.getCalculatedTotal();
+        
+//        this.tax = iTax.getCalculatedTax();
+//        this.tip = iTip.getCalculatedTip();
+//        this.total = iTotal.getCalculatedTotal();
 
     }
 

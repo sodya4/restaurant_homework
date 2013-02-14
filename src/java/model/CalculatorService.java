@@ -30,8 +30,8 @@ public class CalculatorService implements
     }
     
     @Override
-    public void setCalculatedTotal(double preTotal) {
-        this.total = (preTotal + getTax() + getTip());
+    public void setCalculatedTotal(double preTotal, double tax, double tip) {
+        this.total = preTotal + tax + tip;
     }
     
     @Override
@@ -40,8 +40,8 @@ public class CalculatorService implements
     }
 
     @Override
-    public void setCalculatedTip(double preTotal) {
-        this.tip = (TIP_RATE * (preTotal + getCalculatedTax()));
+    public void setCalculatedTip(double preTotal, double tax) {
+        this.tip = (TIP_RATE * (preTotal + tax));
     }
     
     @Override
